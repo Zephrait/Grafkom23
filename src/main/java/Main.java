@@ -283,15 +283,15 @@ public class Main {
                 new Vector4f(0.0f,1.0f,1.0f,1.0f)
         ));
 
-        objectLineRec.add(new Rectangle(
-                Arrays.asList(
-                        //ShaderFile lokasi menyesuaikan object
-                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
-                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
-                ),new ArrayList<>(),
-                new Vector4f(1.0f,1.0f,1.0f,0.0f),
-                Arrays.asList(0,2,4,4,1,3)
-        ));
+//        objectLineRec.add(new Rectangle(
+//                Arrays.asList(
+//                        //ShaderFile lokasi menyesuaikan object
+//                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+//                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+//                ),new ArrayList<>(),
+//                new Vector4f(1.0f,1.0f,1.0f,0.0f),
+//                Arrays.asList(0,2,4,4,1,3)
+//        ));
 
 
     }
@@ -365,8 +365,10 @@ public class Main {
                             Arrays.asList(0, 2, 4, 4, 1, 3), pos.x, pos.y
                     ));
                     objectPointControl.get(0).addVertices(new Vector3f(pos.x, pos.y, 0));
+                    System.out.println(objectPointControl.get(0).vertices);
 
                 }
+
 
 
 
@@ -382,17 +384,17 @@ public class Main {
 
             pos.x = (pos.x - (window.getWidth())/2.0f) / (window.getWidth()/2.0f);
             pos.y = (pos.y - (window.getHeight())/2.0f) / (-window.getHeight()/2.0f);
-            System.out.println(window.getMouseInput().isRightButtonReleased());
-
             if (!objectLineRec.isEmpty() && Collision(pos) != -1) {
 //                while (!window.getMouseInput().isRightButtonReleased()) {
-                    int curBox = Collision(pos);
-                    objectLineRec.get(curBox).setVertices(createRec(pos.x, pos.y, 0.05f, 0.05f));
-                    objectLineRec.get(curBox).setupVAOVBO();
-                    objectPointControl.get(0).setDot(curBox, new Vector3f(pos.x, pos.y, 0));
-                    objectPointControl.get(0).setupVAOVBO();
+                int curBox = Collision(pos);
+                objectLineRec.get(curBox).setVertices(createRec(pos.x, pos.y, 0.05f, 0.05f));
+                objectLineRec.get(curBox).setupVAOVBO();
+                objectPointControl.get(0).setDot(curBox, new Vector3f(pos.x, pos.y, 0));
+                objectPointControl.get(0).setupVAOVBO();
 //                }
             }
+
+
         }
     }
     public static List<Vector3f> createRec(float x, float y, float rx, float ry) {
@@ -401,8 +403,8 @@ public class Main {
         int count = 1;
         while (i<= 315) {
 
-            float xt = (float) (x+0.1f * -Math.sin(Math.toRadians(i)));
-            float yt = (float) (y+0.1f * Math.cos(Math.toRadians(i)));
+            float xt = (float) (x+0.05f * -Math.sin(Math.toRadians(i)));
+            float yt = (float) (y+0.05f * Math.cos(Math.toRadians(i)));
             float z = 0;
             Rec.add(new Vector3f (xt,yt,z));
             System.out.println(xt);
@@ -461,10 +463,10 @@ public class Main {
         boolean boolX = false;
         boolean boolY = false;
 
-        for (Rectangle object : objectLineRec) {
-            if (pos.x < (object.getX() + 0.1f) && pos.x > (object.getX() - 0.1f))
+        for (Vector3f object : objectPointControl.get(0).vertices) {
+            if (pos.x <= (object.x + 0.1f) && pos.x >= (object.x - 0.1f))
                 boolX = true;
-            if (pos.y < (object.getY() + 0.1f) && pos.y > (object.getY() - 0.1f))
+            if (pos.y <= (object.y + 0.1f) && pos.y >= (object.y - 0.1f))
                 boolY = true;
 
             if (boolX && boolY) {

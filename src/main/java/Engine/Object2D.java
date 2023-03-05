@@ -11,7 +11,7 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class Object2D extends ShaderProgram {
-    List<Vector3f> vertices;
+    public List<Vector3f> vertices;
     int vao;
     int vbo;
     Vector4f color;
@@ -100,7 +100,7 @@ public class Object2D extends ShaderProgram {
         setupVAOVBO();
     }
     public void setDot(int index, Vector3f newVector) {
-        vertices.set(index-1,newVector);
+        vertices.set(index,newVector);
     }
 
     public float getVerticesX(int index) {
