@@ -12,13 +12,18 @@ import static org.lwjgl.opengl.GL15.GL_STATIC_DRAW;
 public class Sphere extends Circle{
     int ibo;
     float radiusZ;
+    public Float centerZ;
     ArrayList<Vector3f> index;
-    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ) {
-        super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY);
+
+    public Sphere(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY, Float radiusZ, Float centerX, Float centerY, Float centerZ) {
+        super(shaderModuleDataList, vertices, color, centerPoint, radiusX, radiusY, centerX, centerY);
+
         this.radiusZ = radiusZ;
-        createElipsoid();
+        this.centerZ = centerZ;
+        createSphere();
         setupVAOVBO();
     }
+
 
     public void createBox() {
 
@@ -170,14 +175,14 @@ public class Sphere extends Circle{
 
         for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
             for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
-                float tempX = 0.5f * (float)(Math.cos(v) * Math.cos(u));
-                float tempY = 0.5f * (float)(Math.cos(v) * Math.sin(u));
-                float tempZ = 0.5f * (float)(Math.sin(v));
+                float tempX = radiusX * (float)(Math.cos(v) * Math.cos(u));
+                float tempY = radiusY * (float)(Math.cos(v) * Math.sin(u));
+                float tempZ = radiusZ * (float)(Math.sin(v));
                 temp_indices.add(new Vector3f(tempX,tempY,tempZ));
             }
         }
 
-        this.index = temp_indices;
+        this.vertices = temp_indices;
 
 //        ibo = glGenBuffers();
 //        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,ibo);
@@ -290,9 +295,9 @@ public class Sphere extends Circle{
 
         for(double v = -Math.PI/2; v<= Math.PI/2; v+=Math.PI/60){
             for(double u = -Math.PI; u<= Math.PI; u+=Math.PI/60){
-                float tempX = 0.5f * (float)((1/Math.cos(v)) * Math.cos(u));
-                float tempZ = 0.5f * (float)((1/Math.cos(v)) * Math.sin(u));
-                float tempY = 0.5f * (float)(Math.tan(v));
+                float tempX = radiusX * (float)((1/Math.cos(v)) * Math.cos(u));
+                float tempZ = radiusY * (float)((1/Math.cos(v)) * Math.sin(u));
+                float tempY = radiusZ * (float)(Math.tan(v));
                 temp_indices.add(new Vector3f(tempX,tempY,tempZ));
             }
         }

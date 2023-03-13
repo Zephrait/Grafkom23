@@ -16,7 +16,7 @@ import static org.lwjgl.opengl.GL30.*;
 
 public class Main {
     private Window window = new Window(800,800,"hello world");
-    ArrayList<Object> objects = new ArrayList<>();
+    ArrayList<Sphere> objects = new ArrayList<>();
     ArrayList<Object> objectsRectangle = new ArrayList<>();
     ArrayList<Circle> objectsCircle = new ArrayList<>();
     ArrayList<Rectangle> objectStar = new ArrayList<>();
@@ -280,6 +280,7 @@ public class Main {
                 ,
                 new Vector4f(0.0f,1.0f,1.0f,1.0f)
         ));
+//        matahari
         objects.add(new Sphere(
                         Arrays.asList(
                                 //ShaderFile lokasi menyesuaikan object
@@ -293,12 +294,144 @@ public class Main {
                                 new Vector3f(0.5f,0.5f,0.0f)
                         )
                 ),
+                new Vector4f(1.0f,1.0f,0.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.3f,
+                0.3f,
+                0.3f,0.0f,0.0f,0.0f
+        ));
+        objects.get(0).scaleObject(0.45f,0.45f,0.45f);
+//        merkurius 1
+        objects.add(new Sphere(
+                Arrays.asList(
+                        //ShaderFile lokasi menyesuaikan object
+                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+                ), new ArrayList<>(
+                List.of( //TITIK UNTUK SEGITIGANYA
+                        new Vector3f(-0.5f, 0.5f,0.0f),
+                        new Vector3f(-0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,0.5f,0.0f)
+                )
+        ),
+                new Vector4f(0.5f,0.5f,0.5f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.3f,
+                0.3f,
+                0.3f,
+                0.0f,
+                0.0f,
+                0.0f
+        ));
+        objects.get(1).scaleObject(0.2f,0.2f,0.2f);
+        objects.get(1).translateObject(0.15f,0.15f,0.15f);
+        objects.get(1).centerX = 0.15f;
+        objects.get(1).centerY = 0.15f;
+        objects.get(1).centerZ = 0.15f;
+//        venus 2
+        objects.add(new Sphere(
+                Arrays.asList(
+                        //ShaderFile lokasi menyesuaikan object
+                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+                ), new ArrayList<>(
+                List.of( //TITIK UNTUK SEGITIGANYA
+                        new Vector3f(-0.5f, 0.5f,0.0f),
+                        new Vector3f(-0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,0.5f,0.0f)
+                )
+        ),
+                new Vector4f(1.0f,0.5f,0.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.3f,
+                0.3f,
+                0.3f, 0.0f,0.0f,0.0f
+        ));
+        objects.get(2).scaleObject(0.25f,0.25f,0.25f);
+        objects.get(2).translateObject(0.25f,0.25f,0.25f);
+        objects.get(2).centerX = 0.25f;
+        objects.get(2).centerY = 0.25f;
+        objects.get(2).centerZ = 0.25f;
+//        bumi 3
+        objects.add(new Sphere(
+                Arrays.asList(
+                        //ShaderFile lokasi menyesuaikan object
+                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+                ), new ArrayList<>(
+                List.of( //TITIK UNTUK SEGITIGANYA
+                        new Vector3f(-0.5f, 0.5f,0.0f),
+                        new Vector3f(-0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,0.5f,0.0f)
+                )
+        ),
                 new Vector4f(0.0f,1.0f,1.0f,1.0f),
                 Arrays.asList(0.0f,0.0f,0.0f),
-                0.2f,
-                0.5f,
-                0.4f
+                0.3f,
+                0.3f,
+                0.3f,0.0f,0.0f,0.0f
         ));
+        objects.get(3).scaleObject(0.3f,0.3f,0.3f);
+        objects.get(3).translateObject(0.35f,0.35f,0.35f);
+        objects.get(3).centerX = 0.35f;
+        objects.get(3).centerY = 0.35f;
+        objects.get(3).centerZ = 0.35f;
+////        mars 4
+        objects.add(new Sphere(
+                Arrays.asList(
+                        //ShaderFile lokasi menyesuaikan object
+                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+                ), new ArrayList<>(
+                List.of( //TITIK UNTUK SEGITIGANYA
+                        new Vector3f(-0.5f, 0.5f,0.0f),
+                        new Vector3f(-0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,0.5f,0.0f)
+                )
+        ),
+                new Vector4f(1.0f,0.0f,0.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.3f,
+                0.3f,
+                0.3f,0.0f,0.0f,0.0f
+        ));
+        objects.get(4).scaleObject(0.25f,0.25f,0.25f);
+        objects.get(4).translateObject(0.45f,0.45f,0.45f);
+        objects.get(4).centerX = 0.45f;
+        objects.get(4).centerY = 0.45f;
+        objects.get(4).centerZ = 0.45f;
+////        bulan 5
+        objects.add(new Sphere(
+                Arrays.asList(
+                        //ShaderFile lokasi menyesuaikan object
+                        new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+                        , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+                ), new ArrayList<>(
+                List.of( //TITIK UNTUK SEGITIGANYA
+                        new Vector3f(-0.5f, 0.5f,0.0f),
+                        new Vector3f(-0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,-0.5f,0.0f),
+                        new Vector3f(0.5f,0.5f,0.0f)
+                )
+        ),
+                new Vector4f(0.5f,0.5f,0.5f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.3f,
+                0.3f,
+                0.3f,0.35f,0.35f, 0.35f
+        ));
+
+        objects.get(5).scaleObject(0.05f,0.05f,0.05f);
+        objects.get(5).translateObject(0.4f,0.4f,0.4f);
+        objects.get(5).centerX = 0.4f;
+        objects.get(5).centerY = 0.4f;
+        objects.get(5).centerZ = 0.4f;
+
+//        objects.get(5).setCenterPoint(new List<Float>())
 
 //        objectLineRec.add(new Rectangle(
 //                Arrays.asList(
@@ -355,8 +488,36 @@ public class Main {
         }
     }
     public void input() {
-        if (window.isKeyPressed(GLFW_KEY_W)) {
-            System.out.println("W");
+        if (window.isKeyPressed(GLFW_KEY_G)) {
+            for (int x = 1; x < objects.size()-1; x++) {
+                objects.get(x).translateObject(-objects.get(x).centerX,-objects.get(x).centerY,-objects.get(x).centerZ);
+                objects.get(x).rotateObject((float) Math.toRadians(0.5f),0.0f,1.0f,0.0f);
+                objects.get(x).translateObject(objects.get(x).centerX,objects.get(x).centerY,objects.get(x).centerZ);
+            }
+
+//            objects.get(2).rotateObject((float) Math.toRadians(1.0f), 0.0f,0.0f,0.0f);
+//            objects.get(3).rotateObject((float) Math.toRadians(1.0f), 0.0f,0.0f,0.0f);
+//            objects.get(4).rotateObject((float) Math.toRadians(1.0f), 0.0f,0.0f,0.0f);
+//            objects.get(5).rotateObject((float) Math.toRadians(1.0f), 0.0f,0.0f,0.0f);
+        }
+        if (window.isKeyPressed(GLFW_KEY_F)) {
+            objects.get(1).rotateObject((float) Math.toRadians(0.5f), 0.0f,0.0f,1.0f);
+            objects.get(2).rotateObject((float) Math.toRadians(0.5f), 0.0f,0.0f,1.0f);
+            objects.get(3).rotateObject((float) Math.toRadians(0.5f), 0.0f,0.0f,1.0f);
+            objects.get(4).rotateObject((float) Math.toRadians(0.5f), 0.0f,0.0f,1.0f);
+            objects.get(5).rotateObject((float) Math.toRadians(0.5f), 0.0f,0.0f,1.0f);
+            for (int x = 1; x< objects.size(); x++) {
+                objects.get(x).centerX = (float) (objects.get(x).centerX * Math.cos(Math.toRadians(0.5)) - objects.get(x).centerY * Math.sin(Math.toRadians(0.5)));
+                objects.get(x).centerY = (float) (objects.get(x).centerX * Math.sin(Math.toRadians(0.5)) + objects.get(x).centerY * Math.cos(Math.toRadians(0.5)));
+            }
+        }
+        if (window.isKeyPressed(GLFW_KEY_H)) {
+            float x = objects.get(3).centerX;
+            float y = objects.get(3).centerY;
+            float z = objects.get(3).centerZ;
+            objects.get(5).translateObject(-x,-y,-z);
+            objects.get(5).rotateObject((float)Math.toRadians(0.5),0.0f,0.0f,1.0f);
+            objects.get(5).translateObject(x,y,z);
         }
         if (window.getMouseInput().isLeftButtonPressed()) {
             Vector2f pos = window.getMouseInput().getCurrentPos();
