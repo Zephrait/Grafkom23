@@ -1,13 +1,11 @@
 import Engine.*;
+import Engine.Object;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
-import org.w3c.dom.css.Rect;
 
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,13 +16,13 @@ import static org.lwjgl.opengl.GL30.*;
 
 public class Main {
     private Window window = new Window(800,800,"hello world");
-    ArrayList<Object2D> objects = new ArrayList<>();
-    ArrayList<Object2D> objectsRectangle = new ArrayList<>();
+    ArrayList<Object> objects = new ArrayList<>();
+    ArrayList<Object> objectsRectangle = new ArrayList<>();
     ArrayList<Circle> objectsCircle = new ArrayList<>();
     ArrayList<Rectangle> objectStar = new ArrayList<>();
-    ArrayList<Object2D> objectPointControl = new ArrayList<>();
+    ArrayList<Object> objectPointControl = new ArrayList<>();
     ArrayList<Rectangle> objectLineRec = new ArrayList<>();
-    ArrayList<Object2D> objectLengkung = new ArrayList<>();
+    ArrayList<Object> objectLengkung = new ArrayList<>();
 
 
     public void run() {
@@ -263,7 +261,7 @@ public class Main {
 //                new Vector4f(1.0f,1.0f,1.0f,0.0f),
 //                Arrays.asList(0,2,4,4,1,3)
 //        ));
-        objectPointControl.add(new Object2D(
+        objectPointControl.add(new Object(
                         Arrays.asList(
                                 //ShaderFile lokasi menyesuaikan object
                                 new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
@@ -281,6 +279,25 @@ public class Main {
 //                        ));
                 ,
                 new Vector4f(0.0f,1.0f,1.0f,1.0f)
+        ));
+        objects.add(new Sphere(
+                        Arrays.asList(
+                                //ShaderFile lokasi menyesuaikan object
+                                new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
+                                , new ShaderProgram.ShaderModuleData("resources/shadder/scene.frag", GL_FRAGMENT_SHADER)
+                        ), new ArrayList<>(
+                        List.of( //TITIK UNTUK SEGITIGANYA
+                                new Vector3f(-0.5f, 0.5f,0.0f),
+                                new Vector3f(-0.5f,-0.5f,0.0f),
+                                new Vector3f(0.5f,-0.5f,0.0f),
+                                new Vector3f(0.5f,0.5f,0.0f)
+                        )
+                ),
+                new Vector4f(0.0f,1.0f,1.0f,1.0f),
+                Arrays.asList(0.0f,0.0f,0.0f),
+                0.2f,
+                0.5f,
+                0.4f
         ));
 
 //        objectLineRec.add(new Rectangle(
@@ -302,7 +319,7 @@ public class Main {
             GL.createCapabilities();
             input();
 
-            objectLengkung.add(new Object2D(
+            objectLengkung.add(new Object(
                     Arrays.asList(
                             //ShaderFile lokasi menyesuaikan object
                             new ShaderProgram.ShaderModuleData("resources/shadder/scene.vert", GL_VERTEX_SHADER)
@@ -312,25 +329,25 @@ public class Main {
             ));
             // code harus dibawah Gl.createCapabilities dan diatas glDisableVertex
 
-            for(Object2D object:objects) {
-                object.drawWithVerticesColor();
-            }
-            for(Object2D object:objectsRectangle) {
+            for(Object object:objects) {
                 object.draw();
             }
-            for(Object2D object:objectsCircle) {
+            for(Object object:objectsRectangle) {
+                object.draw();
+            }
+            for(Object object:objectsCircle) {
                 object.draw();
             }
             for(Rectangle object:objectStar) {
                 object.drawStar();
             }
-            for(Object2D object:objectPointControl) {
+            for(Object object:objectPointControl) {
                 object.drawLine();
             }
-            for(Object2D object:objectLineRec) {
+            for(Object object:objectLineRec) {
                 object.drawRec();
             }
-            for (Object2D object:objectLengkung) {
+            for (Object object:objectLengkung) {
                 object.drawLine();
             }
             glDisableVertexAttribArray(0);

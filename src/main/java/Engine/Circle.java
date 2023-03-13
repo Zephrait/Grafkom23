@@ -6,9 +6,17 @@ import org.joml.Vector4f;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Circle extends Object2D {
-    public Circle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color) {
+public class Circle extends Object {
+    List<Float> centerPoint;
+    Float radiusX;
+    Float radiusY;
+
+    public Circle(List<ShaderModuleData> shaderModuleDataList, List<Vector3f> vertices, Vector4f color, List<Float> centerPoint, Float radiusX, Float radiusY) {
         super(shaderModuleDataList, vertices, color);
+        this.centerPoint = centerPoint;
+        this.radiusX = radiusX;
+        this.radiusY = radiusY;
+
     }
 
     public static List<Vector3f> createCircle(float x,float y, float rx,float ry) {

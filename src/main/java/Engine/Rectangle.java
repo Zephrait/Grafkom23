@@ -9,7 +9,7 @@ import java.util.List;
 import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-public class Rectangle extends Object2D{
+public class Rectangle extends Object {
     List<Integer> index;
     int ibo;
     float x;
